@@ -3,5 +3,5 @@ mail:
   username: ""
   password: ""
   port: 587
-  from: 
-  bcc:
+  from: ""
+  bcc: ""
