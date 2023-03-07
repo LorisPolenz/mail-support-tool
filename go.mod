@@ -1,4 +1,4 @@
-module dev.lopo.oma
+module dev.lopo.mail-support
 
 go 1.19
 
