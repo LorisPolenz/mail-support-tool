@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"dev.lopo.oma/helper"
-	"dev.lopo.oma/mail"
+	"dev.lopo.mail-support/helper"
+	"dev.lopo.mail-support/mail"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
@@ -24,7 +24,7 @@ type FormContent struct {
 func RenderUI() {
 
 	formContent := FormContent{
-		FolderPath: os.Getenv("OMA_TOOL_FOLDER_PATH"),
+		FolderPath: helper.Configuration.Filesystem.Path,
 		Year:       time.Now().Year(),
 		Receiver:   os.Getenv("OMA_TOOL_RECEIVERS"),
 	}
