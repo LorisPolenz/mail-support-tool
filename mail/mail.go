@@ -1,6 +1,7 @@
 package mail
 
 import (
+	"fmt"
 	"log"
 	"net/smtp"
 
@@ -13,6 +14,7 @@ var (
 	sender   = Config.Email.Username
 	password = Config.Email.Password
 	host     = Config.Email.Host
+	port     = Config.Email.Port
 	from     = Config.Email.From
 	bcc      = Config.Email.Bcc
 )
@@ -40,9 +42,12 @@ func Send_mail(path string, receiver string) error {
 
 	e = append_attachment(path, e)
 
-	err := e.Send("smtp.gmail.com:587", smtp.PlainAuth("", sender, password, host))
+	fmt.Println("Sending email to " + host + ":" + fmt.Sprint(port))
+
+	err := e.Send(Config.Email.Host+":"+fmt.Sprint(Config.Email.Port), smtp.PlainAuth("", sender, password, host))
 
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 
