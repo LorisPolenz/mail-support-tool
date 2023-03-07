@@ -1,0 +1,11 @@
+version: '3'
+
+tasks:
+  win_build:
+    cmds:
+      - env GOOS="windows" GOARCH="amd64" CGO_ENABLED="1" CC="x86_64-w64-mingw32-gcc" go build -o build/mail-helper.exe
+  mac_build:
+    cmds:
+      - go build -o build/mail-helper
+
+    
