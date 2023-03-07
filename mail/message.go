@@ -2,10 +2,10 @@ package mail
 
 func GenerateMessageBody() string {
 	return `
-		Hallo Anita, 
-
-		Im Anhang findest du meinen Kassen und Stundenraport. 
-
+		Hallo Anita,
+		<br>
+		Im Anhang findest du meinen Kassen und Stundenraport.
+		<br>
 		Viele Grüße
 	`
 

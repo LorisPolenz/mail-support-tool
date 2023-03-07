@@ -5,18 +5,17 @@ import (
 	"log"
 	"net/smtp"
 
-	"dev.lopo.oma/helper"
+	"dev.lopo.mail-support/helper"
 	"github.com/jordan-wright/email"
 )
 
 var (
-	Config   = helper.Load_config()
-	sender   = Config.Email.Username
-	password = Config.Email.Password
-	host     = Config.Email.Host
-	port     = Config.Email.Port
-	from     = Config.Email.From
-	bcc      = Config.Email.Bcc
+	sender   = helper.Configuration.Email.Username
+	password = helper.Configuration.Email.Password
+	host     = helper.Configuration.Email.Host
+	port     = helper.Configuration.Email.Port
+	from     = helper.Configuration.Email.From
+	bcc      = helper.Configuration.Email.Bcc
 )
 
 func append_attachment(path string, e *email.Email) *email.Email {
@@ -44,7 +43,9 @@ func Send_mail(path string, receiver string) error {
 
 	fmt.Println("Sending email to " + host + ":" + fmt.Sprint(port))
 
-	err := e.Send(Config.Email.Host+":"+fmt.Sprint(Config.Email.Port), smtp.PlainAuth("", sender, password, host))
+	decryptedPassword, _ := helper.Decrypt(password)
+
+	err := e.Send(host+":"+fmt.Sprint(port), smtp.PlainAuth("", sender, decryptedPassword, host))
 
 	if err != nil {
 		fmt.Println(err)
