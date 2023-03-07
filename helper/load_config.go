@@ -7,6 +7,8 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+var Configuration = load_config()
+
 type Config struct {
 	Email struct {
 		Username string `yaml:"username"`
@@ -16,9 +18,14 @@ type Config struct {
 		From     string `yaml:"from"`
 		Bcc      string `yaml:"bcc"`
 	} `yaml:"mail"`
+
+	Filesystem struct {
+		Path string `yaml:"path"`
+		Year string `yaml:"year"`
+	} `yaml:"filesystem"`
 }
 
-func Load_config() *Config {
+func load_config() *Config {
 	log.Println("Loading config file...")
 
 	var config Config
@@ -34,16 +41,6 @@ func Load_config() *Config {
 	err = decoder.Decode(&config)
 	if err != nil {
 		log.Fatal(err)
-	}
-
-	if config.Email.Username == "" {
-		log.Println("Loading Username from environment variables.")
-		config.Email.Username = os.Getenv("OMA_TOOL_EMAIL_USERNAME")
-	}
-
-	if config.Email.Password == "" {
-		log.Println("Loading Password from environment variables.")
-		config.Email.Password = os.Getenv("OMA_TOOL_EMAIL_PASSWORD")
 	}
 
 	return &config
