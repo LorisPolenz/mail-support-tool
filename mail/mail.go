@@ -35,7 +35,7 @@ func Send_mail(path string, receiver string) error {
 	e := email.NewEmail()
 	e.From = from
 	e.To = []string{receiver}
-	e.Bcc = []string{bcc}
+	e.Bcc = bcc
 	e.Subject = GenerateMessageSubject()
 	e.HTML = []byte(GenerateMessageBody())
 

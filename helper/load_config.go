@@ -11,12 +11,13 @@ var Configuration = load_config()
 
 type Config struct {
 	Email struct {
-		Username string `yaml:"username"`
-		Password string `yaml:"password"`
-		Host     string `yaml:"host"`
-		Port     string `yaml:"port"`
-		From     string `yaml:"from"`
-		Bcc      string `yaml:"bcc"`
+		Username string   `yaml:"username"`
+		Password string   `yaml:"password"`
+		Host     string   `yaml:"host"`
+		Port     string   `yaml:"port"`
+		From     string   `yaml:"from"`
+		Bcc      []string `yaml:"bcc"`
+		Receiver string   `yaml:"receiver"`
 	} `yaml:"mail"`
 
 	Filesystem struct {

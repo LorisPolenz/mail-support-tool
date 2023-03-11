@@ -3,7 +3,6 @@ package ui
 import (
 	"fmt"
 	"image/color"
-	"os"
 	"time"
 
 	"dev.lopo.mail-support/helper"
@@ -26,7 +25,7 @@ func RenderUI() {
 	formContent := FormContent{
 		FolderPath: helper.Configuration.Filesystem.Path,
 		Year:       time.Now().Year(),
-		Receiver:   os.Getenv("OMA_TOOL_RECEIVERS"),
+		Receiver:   helper.Configuration.Email.Receiver,
 	}
 	a := app.New()
 	w := a.NewWindow("E-Mail Tool")
