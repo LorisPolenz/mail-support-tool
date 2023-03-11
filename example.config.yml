@@ -1,0 +1,13 @@
+mail: 
+  host: ""
+  username: ""
+  password: ""
+  port: 587
+  from: ""
+  receiver: ""
+  bcc: 
+    - ""
+    - ""
+filesystem:
+  year: 2023
+  path: ""
